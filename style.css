@@ -1,0 +1,233 @@
+
+:root {
+    --cell-size: 120px;
+    --mark-size: calc(var(--cell-size)* .9);
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+}
+
+.container {
+    background-image: linear-gradient(135deg, #b3ffe6, transparent);
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.lbox {
+    position: relative;
+    width: 68%;
+    height: 100vh;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.ttt {
+    background: -webkit-linear-gradient(50deg, #00e6b8, #b3ffe6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 10vh;
+}
+
+button {
+    position: relative;
+    margin-top: 40vh;
+    width: 12vw;
+    height: 8vh;
+    border: .1px solid #66ffcc;
+    border-radius: 4vh;
+    font-size: 3.5vh;
+    color: #33ffbb;
+}
+
+button:hover {
+    background-image: linear-gradient(140deg, #00ffcc, transparent);
+    color: #ffffff;
+    cursor: pointer;
+}
+
+/*
+styling game area
+*/
+
+.rbox {
+    background-image: linear-gradient(135deg, #ccffee, transparent);
+    width: 30%;
+    height: 100vh;
+    margin-left: 1%;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    position: relative;
+}
+
+/*
+styling game board
+*/
+
+.board.show {
+    position: absolute;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+    top: 25vh;
+    left: 3.2vw;
+}
+
+.board {
+    display: none;
+}
+
+.bcover.show {
+    position: absolute;
+    top: 25vh;
+    left: 3.2vw;
+    border-radius: 1.6vh;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    padding-top: 6vh;
+    width: 360px;
+    height: 360px;
+    background-image: linear-gradient(135deg, #b3ffcc, transparent);
+}
+
+.bcovertext {
+    text-align: center;
+    font-size: 9vh;
+    background: -webkit-linear-gradient(50deg, #00cccc, #b3ffcc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/*
+Cell design
+*/
+
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    position: relative;
+    background-color: white;
+    border: 1px solid #66ffcc;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+}
+
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: none;
+    border-radius: 1.5vh;
+}
+
+.cell:nth-child(3n) {
+    border-right: none;
+    border-radius: 1.5vh;
+}
+
+.cell:nth-child(3n + 1) {
+    border-left: none;
+    border-radius: 1.5vh;
+}
+
+.cell:last-child,
+.cell:nth-child(8),
+.cell:nth-child(7) {
+    border-bottom: none;
+    border-radius: 1.5vh;
+}
+
+.cell:nth-child(5) {
+    border-radius: 1.5vh;
+}
+
+/*
+X  hover effect
+*/
+
+.cell.x::before,
+.cell.x::after {
+    background-color: #00ffaa;
+}
+
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after {
+    background-color: #b3ffe6;
+}
+
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after {
+    content: '';
+    position: absolute;
+    width: calc(var(--mark-size)* .15);
+    height: var(--mark-size);
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.o):hover::before {
+    transform: rotate(45deg);
+}
+
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::after {
+    transform: rotate(-45deg);
+}
+
+/*
+X  hover effect
+*/
+
+.cell.o::before,
+.cell.o::after {
+    background-color: #00ffaa;
+}
+
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::after {
+    background-color: #b3ffe6;
+}
+
+.cell.o::before,
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+
+.cell.o::before,
+.board.o .cell:not(.x):not(.o):hover::before {
+    width: var(--mark-size);
+    height: var(--mark-size);
+}
+
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::after {
+    width: calc(var(--mark-size)* .7);
+    height: calc(var(--mark-size)* .7);
+    background-color: white;
+}
+
+
+/* cursor disabled for already filled cells
+
+.cell.o,
+.cell.x {
+    cursor: not-allowed;
+}
+
+*/
